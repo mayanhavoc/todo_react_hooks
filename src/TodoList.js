@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Todo from './Todo';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import { TodosContext } from './context/todos.context';
 
-
-function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
+function TodoList() {
+    const {todos} = useContext(TodosContext);
     if(todos.length)
         return (
         <Paper>
             <List>
-                {console.log(todos)}
                 {todos.map((todo, i) => (
-                <> 
+                // To add a key to a fragment, we have to use the long-hand version rather than the <></> styntax.
+                <React.Fragment> 
                     <Todo
                         {...todo}
                         key={todo.id} 
-                        removeTodo={removeTodo}
-                        toggleTodo={toggleTodo}
-                        editTodo={editTodo}
                     />
                     {i < todos.length - 1 && <Divider />}
-                </>
+                </React.Fragment>
                 ))}
             </List>
         </Paper>

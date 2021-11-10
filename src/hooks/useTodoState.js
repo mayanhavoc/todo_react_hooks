@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useLocalStorageState } from './useLocalStorageState';
 import { uuid } from 'uuidv4';
-
 
 export default initialTodos => {
     // create space in the state
-    const [ todos, setTodos ] = useState(initialTodos);
+    const [ todos, setTodos ] = useLocalStorageState("todos", initialTodos);
     return {
         todos, 
         addTodo: newTodoText => {
-            setTodos([...todos, {id: uuid(),task: newTodoText, completed: false }]);
+            setTodos([...todos, {id: uuid(), task: newTodoText, completed: false }]);
         },
         removeTodo: todoId => {
             // filter out removed todo
@@ -17,9 +17,10 @@ export default initialTodos => {
             setTodos(updatedTodos);
         },
         toggleTodo: todoId => {
+            // filter out removed todo
             const updatedTodos = todos.map(todo => 
-                    todo.id === todoId ? {...todo, completed: !todo.completed} : todo
-                );
+            todo.id === todoId ? {...todo, completed: !todo.completed} : todo);
+            // call setTodos with new todos array
             setTodos(updatedTodos);
         },
         editTodo: (todoId, newTask) => {
@@ -28,7 +29,7 @@ export default initialTodos => {
                 );
             setTodos(updatedTodos);
         }
-    }
-}
+    };
+};
 
 
