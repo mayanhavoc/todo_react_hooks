@@ -8,11 +8,12 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import { TodosContext } from './context/todos.context';
+import { DispatchContext } from './context/todos.context';
 
 function Todo({ id, task, completed }) {
-    const { removeTodo, toggleTodo }= useContext(TodosContext);
+    const { removeTodo, toggleTodo }= useContext(DispatchContext);
     const [isEditing, toggle] = useToggle(false); // defaults to false, this is to be safe
+    console.log("todo component")
     return (
         <ListItem style={{ height: "64px" }}>
             {isEditing ? 
