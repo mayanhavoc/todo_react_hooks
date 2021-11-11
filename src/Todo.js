@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext, memo } from 'react';
 import EditTodoForm from './EditTodoForm';
 import useToggle from './hooks/useToggle';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,7 +13,6 @@ import { DispatchContext } from './context/todos.context';
 function Todo({ id, task, completed }) {
     const dispatch = useContext(DispatchContext);
     const [isEditing, toggle] = useToggle(false); // defaults to false, this is to be safe
-    console.log("todo component")
     return (
         <ListItem style={{ height: "64px" }}>
             {isEditing ? 
@@ -44,4 +43,4 @@ function Todo({ id, task, completed }) {
     )
 }
 
-export default Todo
+export default memo(Todo);

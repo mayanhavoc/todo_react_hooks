@@ -27,4 +27,4 @@ function TodoList() {
     return null;
 }
 
-export default TodoList
+export default TodoList;

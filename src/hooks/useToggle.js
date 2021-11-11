@@ -1,6 +1,6 @@
 //call useState
 // return piece of State AND a function to toggle it
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function useToggle(initialVal = false){
     // call useState, 'reserve piece of state'
